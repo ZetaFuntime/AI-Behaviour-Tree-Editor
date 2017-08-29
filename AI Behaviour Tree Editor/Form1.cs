@@ -22,6 +22,7 @@ namespace AI_Behaviour_Tree_Editor
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
+            tabControl1.TabPages.Clear();
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
             CloseImage = AI_Behaviour_Tree_Editor.Properties.Resources.close;
@@ -41,7 +42,7 @@ namespace AI_Behaviour_Tree_Editor
                 Brush titleBrush = new SolidBrush(Color.Black);
                 e.Graphics.DrawString(title, f, titleBrush, new PointF(r.X, r.Y));
 
-                if (tabControl1.SelectedIndex >= 1)
+                if (tabControl1.TabCount >= 0)
                 {
                     e.Graphics.DrawImage(img, new Point(r.X + (this.tabControl1.GetTabRect(e.Index).Width - m_imageLocation.X), m_imageLocation.Y));
                 }
@@ -75,8 +76,18 @@ namespace AI_Behaviour_Tree_Editor
         // New file button
         private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TabPage tpage = new TabPage("new tab");
+            TabPage tpage = new TabPage("new tab " + (tabControl1.TabCount + 1).ToString());
             tabControl1.TabPages.Add(tpage);
+        }
+
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
